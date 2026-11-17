@@ -1,5 +1,5 @@
-import { PortfolioHero } from '@/components/portfolio-hero'
+import { PortfolioExperience } from '@/components/portfolio-experience'
 
 export default function Page() {
-  return <PortfolioHero />
+  return <PortfolioExperience />
 }
