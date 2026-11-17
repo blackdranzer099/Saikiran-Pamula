@@ -247,8 +247,6 @@ export function PortfolioExperience() {
   const [loaded, setLoaded] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [copied, setCopied] = useState(false)
-  const [cursorLabel, setCursorLabel] = useState('')
-  const cursorRef = useRef<HTMLDivElement>(null)
   const completeLoading = useCallback(() => setLoaded(true), [])
 
   useEffect(() => {
@@ -268,14 +266,6 @@ export function PortfolioExperience() {
     return () => { window.clearTimeout(refresh); context.revert() }
   }, [loaded])
 
-  useEffect(() => {
-    const move = (event: PointerEvent) => {
-      if (cursorRef.current) cursorRef.current.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`
-    }
-    window.addEventListener('pointermove', move, { passive: true })
-    return () => window.removeEventListener('pointermove', move)
-  }, [])
-
   const copyEmail = async () => {
     try {
       await navigator.clipboard.writeText('saikiran_pamula@srivensolutions.com')
@@ -291,7 +281,6 @@ export function PortfolioExperience() {
       {!loaded && <Preloader onComplete={completeLoading} />}
       <SmoothScroll />
       <div className="grain-overlay" aria-hidden="true" />
-      <div ref={cursorRef} className="custom-cursor" aria-hidden="true"><span>{cursorLabel}</span></div>
       <Navigation menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
       <main id="top">
         <section className="hero-section" aria-labelledby="hero-title">
