@@ -160,9 +160,13 @@ function HeroWireframe() {
 function SkillsNetwork() {
   const [active, setActive] = useState(0)
   const selected = skills[active]
+  const orbitSkills = ['SnapLogic', 'Azure', 'Python', 'SQL', 'REST APIs']
   return (
     <div className="skills-network">
-      <div className="network-canvas"><Canvas camera={{ position: [0, 0, 7.6], fov: 42 }} dpr={[1, 1.5]} gl={{ alpha: true, antialias: true }}><NetworkScene active={active} onSelect={setActive} /></Canvas></div>
+      <div className="network-canvas">
+        <Canvas camera={{ position: [0, 0, 7.6], fov: 42 }} dpr={[1, 1.5]} gl={{ alpha: true, antialias: true }}><NetworkScene active={active} onSelect={setActive} /></Canvas>
+        <div className="orbit-ui" aria-hidden="true"><div className="orbit-ring orbit-ring-one" /><div className="orbit-ring orbit-ring-two" /><div className="orbit-center">ENGINEERING<br/>CORE</div><div className="orbit-track orbit-track-one">{orbitSkills.slice(0,3).map((name)=><span key={name}>{name}</span>)}</div><div className="orbit-track orbit-track-two">{orbitSkills.slice(3).map((name)=><span key={name}>{name}</span>)}</div></div>
+      </div>
       <div className="network-copy">
         <span className="eyebrow">SELECT A NODE / {String(active + 1).padStart(2, '0')}</span>
         <p className="network-category">{selected.group}</p>
@@ -173,6 +177,39 @@ function SkillsNetwork() {
       <div className="network-mobile-list">{skills.map((skill, i) => <button key={skill.name} onClick={() => setActive(i)} className={active === i ? 'active' : ''}>{skill.name}<span>{skill.group}</span></button>)}</div>
     </div>
   )
+}
+
+const consoleCommands = [
+  { command: 'inspect --integration', label: 'INTEGRATION', output: ['> SOURCE      ERP / CRM / CONTENT', '> ORCHESTRATOR SNAPLOGIC PIPELINE', '> CONTRACT    VALIDATE → TRANSFORM → ROUTE', '> STATUS      READY FOR CONTROLLED DELIVERY'] },
+  { command: 'run --batch-check', label: 'BATCH CHECK', output: ['> INPUT       BATCH PAYLOAD', '> VALIDATION  REQUIRED FIELDS / TYPES', '> PROCESSING  BOUNDED CONCURRENCY', '> RESULT      COUNTS + RECONCILIATION'] },
+  { command: 'recover --failed-record', label: 'RECOVERY', output: ['> CLASSIFY    TRANSIENT / PERMANENT', '> RETRY       BOUNDED + IDEMPOTENT', '> ROUTE       EXCEPTION QUEUE', '> AUDIT       CORRELATION ID + REASON'] },
+]
+
+function EngineeringConsole() {
+  const [active, setActive] = useState(0)
+  const selected = consoleCommands[active]
+  return <div className="console-card">
+    <div className="console-top"><span><i/> ENGINEERING CONSOLE</span><span>SAFE / SIMULATED</span></div>
+    <div className="console-tabs" role="tablist" aria-label="Console examples">{consoleCommands.map((item,index)=><button key={item.label} role="tab" aria-selected={active===index} className={active===index?'active':''} onClick={()=>setActive(index)}>{item.label}</button>)}</div>
+    <div className="console-command"><span>guest@sp-lab:~$</span> {selected.command}</div>
+    <pre aria-live="polite">{selected.output.join('\\n')}</pre>
+    <div className="console-foot"><span>● LOCAL EXAMPLE / NO LIVE SYSTEM CONNECTION</span><span>EXIT 0</span></div>
+  </div>
+}
+
+function EngineeringBento() {
+  return <section className="bento-section section-pad" aria-labelledby="bento-title">
+    <div className="section-kicker"><span>06 / THE ENGINEERING SNAPSHOT</span><span>CAPABILITIES / EXPERIENCE / SELECTED WORK</span></div>
+    <div className="bento-heading"><h2 id="bento-title">THE BIG<br/><em>PICTURE.</em></h2><p>A compact view of the disciplines, systems and engineering habits that shape the work.</p></div>
+    <div className="engineering-bento">
+      <article className="bento-card bento-skills"><span className="bento-index">01 / CORE TOOLKIT</span><h3>TOOLS THAT<br/>CONNECT.</h3><div className="bento-tags">{['SnapLogic','Azure','Python','SQL','Oracle','Snowflake','REST APIs','Pytest','Selenium','Docker','Git'].map(item=><span key={item}>{item}</span>)}</div></article>
+      <article className="bento-card bento-experience"><span className="bento-index">02 / EXPERIENCE</span><strong>3<span>+</span></strong><h3>YEARS IN<br/>ENGINEERING.</h3><p>Enterprise integration, data workflows, API orchestration and automation — with an architecture-first mindset.</p><small>INTEGRATION / DATA / AUTOMATION</small></article>
+      <article className="bento-card bento-featured"><span className="bento-index">03 / FEATURED REFERENCE DESIGN</span><div className="bento-feature-graphic"><i/><i/><i/><b>SL</b></div><h3>SNAPLOGIC<br/>ARCHITECTURE.</h3><p>Explore orchestration boundaries, data movement, validation and recovery patterns in an interactive reference architecture.</p><a href="/projects/snaplogic-architecture">OPEN CASE STUDY <ArrowUpRight size={15}/></a></article>
+      <article className="bento-card bento-automation"><span className="bento-index">04 / QUALITY ENGINEERING</span><h3>TEST WITH<br/>INTENTION.</h3><p>Python + Pytest + Selenium. Page objects, reusable fixtures and meaningful assertions for React user journeys.</p><div className="bento-code">pytest -q <span>--</span> maxfail=1</div></article>
+      <article className="bento-card bento-console"><EngineeringConsole/></article>
+    </div>
+    <p className="bento-note">Experience and capability summary. Interactive console output is illustrative and does not connect to live enterprise systems.</p>
+  </section>
 }
 
 function ProjectCard({ project, index }: { project: (typeof projects)[number]; index: number }) {
@@ -329,6 +366,8 @@ export function PortfolioExperience() {
         </section>
 
         <EngineeringLab />
+
+        <EngineeringBento />
 
         <section id="journey" className="journey-section section-pad">
           <div className="section-kicker" data-reveal><span>06 / THE JOURNEY</span><span>LEARNING IN MOTION</span></div>
