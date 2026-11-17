@@ -151,8 +151,8 @@ function HeroWireframe() {
   })
   return (
     <mesh ref={mesh}>
-      <icosahedronGeometry args={[2.45, 2]} />
-      <meshBasicMaterial color="#c7ff00" wireframe transparent opacity={0.22} />
+      <sphereGeometry args={[2.15, 18, 12]} />
+      <meshBasicMaterial color="#c7ff00" wireframe transparent opacity={0.13} depthWrite={false} />
     </mesh>
   )
 }
@@ -287,8 +287,8 @@ export function PortfolioExperience() {
           <div className="hero-grid" />
           <div className="hero-meta hero-meta-left"><span>INTEGRATION / DATA / AUTOMATION</span><i /> <span>BUILDING SYSTEMS THAT CONNECT</span></div>
           <div className="hero-meta hero-meta-right">INDIA <b>—</b> AVAILABLE FOR CONVERSATIONS</div>
-          <div className="hero-portrait"><img src={PORTRAIT_IMAGE} alt="Portrait of Sai Pamula" /><div className="hero-depth"><Canvas camera={{ position: [0, 0, 8], fov: 36 }} dpr={[1, 1.5]}><ambientLight intensity={1.2} /><HeroWireframe /></Canvas></div></div>
-          <div className="hero-copy"><p className="eyebrow" data-reveal>CREATIVE ENGINEER / SYSTEMS THINKER / PRODUCT BUILDER</p><h1 id="hero-title" data-reveal>SAI<br /><span>PAMULA</span></h1><div className="hero-bottom" data-reveal><p>SOFTWARE ENGINEERING<br />INTEGRATION & DATA ARCHITECTURE<br />AI-POWERED PRODUCT EXPERIMENTS</p><a href="#about" className="scroll-cue" data-cursor="SCROLL">SCROLL TO EXPLORE <ArrowDown size={15} /></a><span>SP / 001</span></div></div>
+          <div className="hero-portrait"><img src={PORTRAIT_IMAGE} alt="Portrait of Sai Pamula" /><div className="hero-depth"><Canvas camera={{ position: [0, 0, 8.8], fov: 38 }} dpr={[1, 1.5]}><ambientLight intensity={1.2} /><HeroWireframe /></Canvas></div></div>
+          <div className="hero-copy"><p className="eyebrow" data-reveal>CREATIVE ENGINEER / SYSTEMS THINKER / PRODUCT BUILDER</p><h1 id="hero-title" data-reveal><span className="hero-name-solid">SAI KIRAN</span><span className="hero-name-outline">PAMULA</span></h1><div className="hero-bottom" data-reveal><p>SOFTWARE ENGINEERING<br />INTEGRATION & DATA ARCHITECTURE<br />AI-POWERED PRODUCT EXPERIMENTS</p><a href="#about" className="scroll-cue" data-cursor="SCROLL">SCROLL TO EXPLORE <ArrowDown size={15} /></a><span>SP / 001</span></div></div>
         </section>
 
         <section id="about" className="about-section section-pad">
