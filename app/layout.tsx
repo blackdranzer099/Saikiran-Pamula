@@ -3,8 +3,13 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Sai Pamula — Data Engineer & Automation Specialist',
-  description: 'Portfolio of Sai Pamula, a data engineer and automation specialist.',
+  metadataBase: new URL('https://saipamula.dev'),
+  title: 'Sai Pamula — Data / Systems / Engineering',
+  description: 'Sai Pamula builds enterprise integrations, data workflows, automation systems, and reliable engineering foundations.',
+  keywords: ['Sai Pamula', 'data engineer', 'SnapLogic', 'Azure', 'Python', 'automation specialist'],
+  alternates: { canonical: '/' },
+  openGraph: { title: 'Sai Pamula — Data / Systems / Engineering', description: 'Building connections that move systems forward.', type: 'website', url: 'https://saipamula.dev' },
+  twitter: { card: 'summary_large_image', title: 'Sai Pamula — Data / Systems / Engineering', description: 'Building connections that move systems forward.' },
   generator: 'v0.app',
   icons: {
     icon: [
