@@ -140,6 +140,23 @@ function NetworkScene({ active, onSelect }: { active: number; onSelect: (index: 
   )
 }
 
+function HeroWireframe() {
+  const mesh = useRef<THREE.Mesh>(null)
+  useFrame((state) => {
+    if (!mesh.current) return
+    const t = state.clock.elapsedTime
+    mesh.current.rotation.y = Math.sin(t * 0.16) * 0.22 + t * 0.035
+    mesh.current.rotation.x = 0.18 + Math.cos(t * 0.13) * 0.09
+    mesh.current.rotation.z = Math.sin(t * 0.1) * 0.06
+  })
+  return (
+    <mesh ref={mesh}>
+      <icosahedronGeometry args={[2.45, 2]} />
+      <meshBasicMaterial color="#c7ff00" wireframe transparent opacity={0.22} />
+    </mesh>
+  )
+}
+
 function SkillsNetwork() {
   const [active, setActive] = useState(0)
   const selected = skills[active]
@@ -176,7 +193,7 @@ function ProjectCard({ project, index }: { project: (typeof projects)[number]; i
         <h3>{project.title}</h3>
         <p>{project.description}</p>
         <div className="tag-list">{project.stack.map((tag) => <span key={tag}>{tag}</span>)}</div>
-        <button className="text-link" onClick={() => setExpanded(!expanded)} aria-expanded={expanded}>{expanded ? 'CLOSE CASE STUDY' : 'EXPLORE CASE STUDY'} <ArrowUpRight size={15} /></button>
+        <button className="text-link" data-cursor="OPEN" onClick={() => setExpanded(!expanded)} aria-expanded={expanded}>{expanded ? 'CLOSE CASE STUDY' : 'EXPLORE CASE STUDY'} <ArrowUpRight size={15} /></button>
         {expanded && <div className="project-detail"><span>ENGINEERING APPROACH</span><p>{project.detail}</p><small>Illustrative, anonymized project description. Specific client details and outcome metrics are intentionally omitted.</small></div>}
       </div>
     </article>
@@ -184,7 +201,7 @@ function ProjectCard({ project, index }: { project: (typeof projects)[number]; i
 }
 
 function Navigation({ menuOpen, setMenuOpen }: { menuOpen: boolean; setMenuOpen: (open: boolean) => void }) {
-  const items = [{ label: 'ABOUT', href: '#about' }, { label: 'WORK', href: '#work' }, { label: 'EXPERTISE', href: '#expertise' }, { label: 'JOURNEY', href: '#journey' }, { label: 'CONTACT', href: '#contact' }]
+  const items = [{ label: 'ABOUT', href: '#about' }, { label: 'WORK', href: '#work' }, { label: 'EXPERTISE', href: '#expertise' }, { label: 'JOURNEY', href: '#journey' }, { label: 'OFF TRACK', href: '#beyond' }, { label: 'CONTACT', href: '#contact' }]
   return (
     <>
       <header className="site-nav">
@@ -254,8 +271,8 @@ export function PortfolioExperience() {
           <div className="hero-grid" />
           <div className="hero-meta hero-meta-left"><span>INTEGRATION / DATA / AUTOMATION</span><i /> <span>BUILDING SYSTEMS THAT CONNECT</span></div>
           <div className="hero-meta hero-meta-right">INDIA <b>—</b> AVAILABLE FOR CONVERSATIONS</div>
-          <div className="hero-portrait"><img src={PORTRAIT_IMAGE} alt="Portrait of Sai Pamula" /><div className="hero-depth"><Canvas camera={{ position: [0, 0, 8], fov: 36 }} dpr={[1, 1.5]}><ambientLight intensity={1.2} /><mesh rotation={[0.25, 0.2, 0]}><icosahedronGeometry args={[2.45, 2]} /><meshBasicMaterial color="#c7ff00" wireframe transparent opacity={0.22} /></mesh></Canvas></div></div>
-          <div className="hero-copy"><p className="eyebrow" data-reveal>DATA / SYSTEMS / HUMAN POTENTIAL</p><h1 id="hero-title" data-reveal>SAI<br /><span>PAMULA</span></h1><div className="hero-bottom" data-reveal><p>DATA ENGINEER<br />INTEGRATION DEVELOPER<br />AUTOMATION SPECIALIST</p><a href="#about" className="scroll-cue">SCROLL TO EXPLORE <ArrowDown size={15} /></a><span>SP / 001</span></div></div>
+          <div className="hero-portrait"><img src={PORTRAIT_IMAGE} alt="Portrait of Sai Pamula" /><div className="hero-depth"><Canvas camera={{ position: [0, 0, 8], fov: 36 }} dpr={[1, 1.5]}><ambientLight intensity={1.2} /><HeroWireframe /></Canvas></div></div>
+          <div className="hero-copy"><p className="eyebrow" data-reveal>DATA / SYSTEMS / HUMAN POTENTIAL</p><h1 id="hero-title" data-reveal>SAI<br /><span>PAMULA</span></h1><div className="hero-bottom" data-reveal><p>DATA ENGINEER<br />INTEGRATION DEVELOPER<br />AUTOMATION SPECIALIST</p><a href="#about" className="scroll-cue" data-cursor="SCROLL">SCROLL TO EXPLORE <ArrowDown size={15} /></a><span>SP / 001</span></div></div>
         </section>
 
         <section id="about" className="about-section section-pad">
@@ -269,15 +286,34 @@ export function PortfolioExperience() {
           <div className="projects-track">{projects.map((project, index) => <ProjectCard key={project.number} project={project} index={index} />)}<div className="projects-end"><span>END OF TRANSMISSION</span><strong>MORE<br />IN MOTION.</strong><a href="#contact">START A CONVERSATION <ArrowUpRight size={16} /></a></div></div>
         </section>
 
+        <section className="track-world-section section-pad" aria-label="On systems and off systems">
+          <div className="section-kicker"><span>03 / TWO SIDES OF THE STORY</span><span>ENGINEERING × CURIOSITY</span></div>
+          <div className="track-world-heading"><h2>ON<br /><em>SYSTEMS.</em></h2><p>Designing integrations, data workflows and automation that keep complex systems moving.</p></div>
+          <div className="track-world-grid">
+            <a className="world-card world-card-engineering" href="#expertise">
+              <span className="world-card-index">01 / THE ENGINEERING SIDE</span>
+              <strong>BUILD<br />WHAT<br />CONNECTS.</strong>
+              <span className="world-card-link">EXPLORE THE TOOLKIT ↗</span>
+              <i className="world-orbit" aria-hidden="true" />
+            </a>
+            <a className="world-card world-card-creative" href="#beyond">
+              <span className="world-card-index">02 / THE HUMAN SIDE</span>
+              <strong>STAY<br />CURIOUS.<br />LOOK CLOSER.</strong>
+              <span className="world-card-link">EXPLORE OFF TRACK ↗</span>
+              <i className="world-orbit" aria-hidden="true" />
+            </a>
+          </div>
+        </section>
+
         <section id="expertise" className="expertise-section section-pad">
-          <div className="section-kicker" data-reveal><span>03 / THE TOOLKIT</span><span>INTERACTIVE SKILL NETWORK</span></div>
+          <div className="section-kicker" data-reveal><span>04 / THE TOOLKIT</span><span>INTERACTIVE SKILL NETWORK</span></div>
           <h2 data-reveal>CONNECTED<br /><em>BY DESIGN.</em></h2>
           <p className="section-intro" data-reveal>Explore the technologies and engineering disciplines that connect across my work. Select a node to see its role.</p>
           <SkillsNetwork />
         </section>
 
         <section id="journey" className="journey-section section-pad">
-          <div className="section-kicker" data-reveal><span>04 / THE JOURNEY</span><span>LEARNING IN MOTION</span></div>
+          <div className="section-kicker" data-reveal><span>05 / THE JOURNEY</span><span>LEARNING IN MOTION</span></div>
           <h2 data-reveal>BUILT THROUGH<br /><em>EXPERIENCE.</em></h2>
           <div className="journey-list">
             <article data-reveal><span>01</span><div><h3>FOUNDATIONS</h3><p>Building a strong base across databases, APIs, programming, and software quality.</p></div><small>DATA / SOFTWARE</small></article>
@@ -288,16 +324,16 @@ export function PortfolioExperience() {
         </section>
 
         <section id="beyond" className="beyond-section section-pad">
-          <div className="section-kicker" data-reveal><span>05 / BEYOND ENGINEERING</span><span>THE HUMAN SIDE</span></div>
+          <div className="section-kicker" data-reveal><span>06 / OFF TRACK</span><span>THE HUMAN SIDE</span></div>
           <div className="beyond-layout"><h2 data-reveal>MORE THAN<br /><em>JUST CODE.</em></h2><div data-reveal><p>Visual storytelling, photography, creative experiments, and continuous learning influence how I see problems. Curiosity does not stop at the edge of a code editor.</p><div className="beyond-note"><span>ALWAYS EXPLORING</span><span>CREATIVITY × ENGINEERING</span></div></div></div>
           <div className="beyond-visual"><div className="visual-grid" /><span>IDEAS IN PROGRESS</span><strong>OBSERVE.<br />IMAGINE.<br />BUILD.</strong><span className="visual-index">SP / FIELD NOTES / 001</span></div>
         </section>
 
         <section id="contact" className="contact-section section-pad">
-          <div className="section-kicker"><span>06 / START A CONVERSATION</span><span>CONTACT / COLLABORATION</span></div>
+          <div className="section-kicker"><span>07 / START A CONVERSATION</span><span>CONTACT / COLLABORATION</span></div>
           <p className="eyebrow">HAVE A COMPLEX SYSTEM TO CONNECT?</p>
           <h2>LET&apos;S BUILD<br /><em>SOMETHING</em><br />MEANINGFUL.</h2>
-          <div className="contact-bottom"><div><span className="eyebrow">EMAIL</span><a className="contact-email" href="mailto:saikiran_pamula@srivensolutions.com">saikiran_pamula@srivensolutions.com <ArrowUpRight size={17} /></a><button className="copy-button" onClick={copyEmail}>{copied ? <Check size={14} /> : <Copy size={14} />}{copied ? 'COPIED' : 'COPY EMAIL'}</button></div><div className="social-links"><a href="https://github.com/blackdranzer099" target="_blank" rel="noreferrer"><Code2 size={17} /> GITHUB <ArrowUpRight size={14} /></a><a href="mailto:saikiran_pamula@srivensolutions.com"><Mail size={17} /> EMAIL <ArrowUpRight size={14} /></a><span>INDIA / OPEN TO GOOD CONVERSATIONS</span></div></div>
+          <div className="contact-bottom"><div><span className="eyebrow">EMAIL</span><a className="contact-email" data-cursor="EMAIL" href="mailto:saikiran_pamula@srivensolutions.com">saikiran_pamula@srivensolutions.com <ArrowUpRight size={17} /></a><button className="copy-button" onClick={copyEmail}>{copied ? <Check size={14} /> : <Copy size={14} />}{copied ? 'COPIED' : 'COPY EMAIL'}</button></div><div className="social-links"><a href="https://github.com/blackdranzer099" target="_blank" rel="noreferrer"><Code2 size={17} /> GITHUB <ArrowUpRight size={14} /></a><a href="mailto:saikiran_pamula@srivensolutions.com"><Mail size={17} /> EMAIL <ArrowUpRight size={14} /></a><span>INDIA / OPEN TO GOOD CONVERSATIONS</span></div></div>
         </section>
       </main>
       <footer className="site-footer"><a href="#top" className="footer-brand">SP<span>.</span></a><span>© {new Date().getFullYear()} SAI PAMULA</span><span>DATA / SYSTEMS / ENGINEERING</span><a href="#top">BACK TO TOP ↑</a></footer>
