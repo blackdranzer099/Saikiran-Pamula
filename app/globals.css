@@ -266,6 +266,7 @@ a:focus-visible,button:focus-visible { outline:2px solid var(--acid); outline-of
 @media(prefers-reduced-motion:reduce) { .lab-node { transition:none; } }
 
 
-/* Keep the real system pointer: no oversized overlay cursor. */
-html, body, a, button, [role="tab"] { cursor: auto; }
-a, button, [role="tab"] { cursor: pointer; }
+/* Use an arrow pointer over page content; reserve pointer hands for controls. */
+html, body, body * { cursor: default !important; }
+a, button, [role="button"], [role="tab"], summary, label[for] { cursor: pointer !important; }
+input, textarea, [contenteditable="true"] { cursor: text !important; }
