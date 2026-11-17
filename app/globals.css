@@ -145,9 +145,6 @@ button { color: inherit; font: inherit; }
 .social-links span { margin-top:14px; color:#46521a; font-size:9px; }
 .site-footer { display:flex; justify-content:space-between; align-items:center; gap:20px; padding:28px 4vw; background:var(--ink); color:var(--muted); font:9px var(--mono); letter-spacing:.12em; }
 .footer-brand { color:var(--paper); }
-.custom-cursor { position:fixed; z-index:110; top:0; left:0; display:grid; width:54px; height:54px; place-items:center; border:1px solid var(--acid); border-radius:50%; pointer-events:none; mix-blend-mode:difference; transform:translate3d(-100px,-100px,0); }
-.custom-cursor span { font:8px var(--mono); letter-spacing:.08em; }
-@media (hover:hover) and (pointer:fine) { body { cursor:none; } a,button { cursor:none; } }
 @media (max-width:899px) {
   .desktop-nav { display:none; } .menu-toggle { display:grid; }
   .hero-portrait { width:85vw; height:65%; top:12%; }
@@ -191,13 +188,11 @@ button { color: inherit; font: inherit; }
   .contact-bottom { align-items:flex-start; flex-direction:column; margin-top:65px; }
   .contact-email { font-size:14px; }
   .site-footer { flex-wrap:wrap; padding:25px 5vw; font-size:8px; }
-  .custom-cursor { display:none; }
   .preloader { padding:22px 5vw; }
   .preloader-top,.preloader-bottom { font-size:8px; }
 }
 @media (prefers-reduced-motion:reduce) {
   *,*::before,*::after { scroll-behavior:auto !important; animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
-  .custom-cursor { display:none; }
 }
 
 
@@ -226,7 +221,6 @@ button { color: inherit; font: inherit; }
 .world-orbit { position:absolute; z-index:-1; width:min(34vw,420px); aspect-ratio:1; right:-5%; top:20%; border:1px solid rgba(199,255,0,.55); border-radius:50%; transform:rotate(-30deg) scaleY(.48); box-shadow:0 0 0 35px rgba(199,255,0,.035),0 0 0 70px rgba(199,255,0,.025); transition:transform 1.2s cubic-bezier(.2,.7,.2,1); }
 .world-card:hover .world-orbit { transform:rotate(25deg) scaleY(.55) scale(1.12); }
 .world-card-creative .world-orbit { border-color:rgba(16,19,14,.4); box-shadow:0 0 0 35px rgba(16,19,14,.035),0 0 0 70px rgba(16,19,14,.025); }
-.custom-cursor span { white-space:nowrap; font-size:7px; }
 a:focus-visible,button:focus-visible { outline:2px solid var(--acid); outline-offset:5px; }
 @media (max-width:899px) {
   .track-world-heading { align-items:flex-start; flex-direction:column; padding:60px 0 35px; }
@@ -270,3 +264,8 @@ a:focus-visible,button:focus-visible { outline:2px solid var(--acid); outline-of
 @media(max-width:899px) { .lab-heading { align-items:flex-start; flex-direction:column; padding:60px 0 40px; } .lab-flow { grid-template-columns:repeat(2,minmax(0,1fr)); } .lab-node:nth-child(2) { border-right:0; } .lab-node:nth-child(-n+2) { border-bottom:1px solid rgba(16,19,14,.2); } .lab-detail { grid-template-columns:1fr; gap:30px; } }
 @media(max-width:600px) { .lab-node { min-height:145px; padding:15px; } .lab-node strong { font-size:2rem; } .lab-node small { font-size:8px; } .lab-detail { padding-top:40px; } }
 @media(prefers-reduced-motion:reduce) { .lab-node { transition:none; } }
+
+
+/* Keep the real system pointer: no oversized overlay cursor. */
+html, body, a, button, [role="tab"] { cursor: auto; }
+a, button, [role="tab"] { cursor: pointer; }
