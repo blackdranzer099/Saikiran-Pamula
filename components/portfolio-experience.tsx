@@ -43,11 +43,11 @@ const projects = [
   },
   {
     number: '04',
-    title: 'Data performance',
-    category: 'SQL / PERFORMANCE',
-    description: 'A performance-engineering approach to high-volume data workflows, batch processing, and database-side optimization.',
-    stack: ['SQL', 'Oracle', 'Batching', 'Monitoring'],
-    detail: 'The technical narrative examines throughput, query shape, batch sizing, transaction behavior, observability, and measured bottlenecks.',
+    title: 'AI product experiments',
+    category: 'AI / PRODUCT ENGINEERING',
+    description: 'Exploring how AI capabilities can become useful product experiences through thoughtful interfaces, APIs, and dependable workflows.',
+    stack: ['AI SDKs', 'APIs', 'TypeScript', 'Vercel'],
+    detail: 'A prototype-oriented track for evaluating model integration, structured outputs, tool calling, user experience, and responsible product behavior. This is an experimentation area, not a claim of a shipped client product.',
     tone: 'violet',
   },
 ]
@@ -201,7 +201,7 @@ function ProjectCard({ project, index }: { project: (typeof projects)[number]; i
 }
 
 function Navigation({ menuOpen, setMenuOpen }: { menuOpen: boolean; setMenuOpen: (open: boolean) => void }) {
-  const items = [{ label: 'ABOUT', href: '#about' }, { label: 'WORK', href: '#work' }, { label: 'EXPERTISE', href: '#expertise' }, { label: 'JOURNEY', href: '#journey' }, { label: 'OFF TRACK', href: '#beyond' }, { label: 'CONTACT', href: '#contact' }]
+  const items = [{ label: 'ABOUT', href: '#about' }, { label: 'WORK', href: '#work' }, { label: 'LAB', href: '#lab' }, { label: 'EXPERTISE', href: '#expertise' }, { label: 'JOURNEY', href: '#journey' }, { label: 'OFF TRACK', href: '#beyond' }, { label: 'CONTACT', href: '#contact' }]
   return (
     <>
       <header className="site-nav">
@@ -213,6 +213,33 @@ function Navigation({ menuOpen, setMenuOpen }: { menuOpen: boolean; setMenuOpen:
         <div className="menu-overlay-inner"><span className="eyebrow">NAVIGATE / SP</span>{items.map((item, i) => <a key={item.href} href={item.href} onClick={() => setMenuOpen(false)}><span>0{i + 1}</span>{item.label}<ArrowUpRight /></a>)}<p>DATA / SYSTEMS / HUMAN POTENTIAL</p></div>
       </div>
     </>
+  )
+}
+
+
+const labModules = [
+  { id: 'connect', number: '01', title: 'CONNECT', subtitle: 'Integration architecture', detail: 'Design API-led connections, reusable pipeline patterns, authentication boundaries, and dependable error routes between enterprise systems.', tools: 'SnapLogic / REST APIs / JSON' },
+  { id: 'transform', number: '02', title: 'TRANSFORM', subtitle: 'Data engineering', detail: 'Shape data with SQL and Python, orchestrate batch workflows, validate records, and make throughput and reconciliation observable.', tools: 'SQL / Python / Oracle / Azure' },
+  { id: 'assure', number: '03', title: 'ASSURE', subtitle: 'Automation engineering', detail: 'Protect critical user journeys with maintainable browser tests, page objects, meaningful assertions, and repeatable CI-friendly checks.', tools: 'Pytest / Selenium / React' },
+  { id: 'augment', number: '04', title: 'AUGMENT', subtitle: 'AI product engineering', detail: 'Prototype useful AI experiences by connecting model capabilities to product interfaces, APIs, structured data, and human review.', tools: 'AI SDKs / TypeScript / APIs' },
+]
+
+function EngineeringLab() {
+  const [active, setActive] = useState('connect')
+  const selected = labModules.find((module) => module.id === active) ?? labModules[0]
+  return (
+    <section id="lab" className="engineering-lab section-pad">
+      <div className="section-kicker"><span>05 / THE ENGINEERING LAB</span><span>FROM SYSTEMS TO EXPERIENCES</span></div>
+      <div className="lab-heading"><h2>THINK IN<br /><em>SYSTEMS.</em></h2><p>One engineering mindset. Four connected disciplines. Explore how an idea moves from a system boundary to a dependable product experience.</p></div>
+      <div className="lab-flow" role="tablist" aria-label="Engineering disciplines">
+        {labModules.map((module, index) => <button key={module.id} role="tab" aria-selected={active === module.id} aria-controls="lab-detail" id={`lab-tab-${module.id}`} className={active === module.id ? 'lab-node active' : 'lab-node'} onClick={() => setActive(module.id)}><span>{module.number}</span><strong>{module.title}</strong><small>{module.subtitle}</small>{index < labModules.length - 1 && <i aria-hidden="true" />}</button>)}
+      </div>
+      <article className="lab-detail" id="lab-detail" role="tabpanel" aria-labelledby={`lab-tab-${selected.id}`}>
+        <div><span className="eyebrow">SELECTED DISCIPLINE / {selected.number}</span><h3>{selected.title}<br /><em>{selected.subtitle}</em></h3></div>
+        <div className="lab-detail-copy"><p>{selected.detail}</p><span>{selected.tools}</span></div>
+      </article>
+      <p className="lab-footnote">A working map of capabilities and experiments — not a claim that every module is a shipped product.</p>
+    </section>
   )
 }
 
@@ -272,7 +299,7 @@ export function PortfolioExperience() {
           <div className="hero-meta hero-meta-left"><span>INTEGRATION / DATA / AUTOMATION</span><i /> <span>BUILDING SYSTEMS THAT CONNECT</span></div>
           <div className="hero-meta hero-meta-right">INDIA <b>—</b> AVAILABLE FOR CONVERSATIONS</div>
           <div className="hero-portrait"><img src={PORTRAIT_IMAGE} alt="Portrait of Sai Pamula" /><div className="hero-depth"><Canvas camera={{ position: [0, 0, 8], fov: 36 }} dpr={[1, 1.5]}><ambientLight intensity={1.2} /><HeroWireframe /></Canvas></div></div>
-          <div className="hero-copy"><p className="eyebrow" data-reveal>DATA / SYSTEMS / HUMAN POTENTIAL</p><h1 id="hero-title" data-reveal>SAI<br /><span>PAMULA</span></h1><div className="hero-bottom" data-reveal><p>DATA ENGINEER<br />INTEGRATION DEVELOPER<br />AUTOMATION SPECIALIST</p><a href="#about" className="scroll-cue" data-cursor="SCROLL">SCROLL TO EXPLORE <ArrowDown size={15} /></a><span>SP / 001</span></div></div>
+          <div className="hero-copy"><p className="eyebrow" data-reveal>CREATIVE ENGINEER / SYSTEMS THINKER / PRODUCT BUILDER</p><h1 id="hero-title" data-reveal>SAI<br /><span>PAMULA</span></h1><div className="hero-bottom" data-reveal><p>SOFTWARE ENGINEERING<br />INTEGRATION & DATA ARCHITECTURE<br />AI-POWERED PRODUCT EXPERIMENTS</p><a href="#about" className="scroll-cue" data-cursor="SCROLL">SCROLL TO EXPLORE <ArrowDown size={15} /></a><span>SP / 001</span></div></div>
         </section>
 
         <section id="about" className="about-section section-pad">
@@ -311,6 +338,8 @@ export function PortfolioExperience() {
           <p className="section-intro" data-reveal>Explore the technologies and engineering disciplines that connect across my work. Select a node to see its role.</p>
           <SkillsNetwork />
         </section>
+
+        <EngineeringLab />
 
         <section id="journey" className="journey-section section-pad">
           <div className="section-kicker" data-reveal><span>05 / THE JOURNEY</span><span>LEARNING IN MOTION</span></div>
