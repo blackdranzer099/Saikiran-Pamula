@@ -342,7 +342,7 @@ export function PortfolioExperience() {
         <EngineeringLab />
 
         <section id="journey" className="journey-section section-pad">
-          <div className="section-kicker" data-reveal><span>05 / THE JOURNEY</span><span>LEARNING IN MOTION</span></div>
+          <div className="section-kicker" data-reveal><span>06 / THE JOURNEY</span><span>LEARNING IN MOTION</span></div>
           <h2 data-reveal>BUILT THROUGH<br /><em>EXPERIENCE.</em></h2>
           <div className="journey-list">
             <article data-reveal><span>01</span><div><h3>FOUNDATIONS</h3><p>Building a strong base across databases, APIs, programming, and software quality.</p></div><small>DATA / SOFTWARE</small></article>
@@ -353,13 +353,13 @@ export function PortfolioExperience() {
         </section>
 
         <section id="beyond" className="beyond-section section-pad">
-          <div className="section-kicker" data-reveal><span>06 / OFF TRACK</span><span>THE HUMAN SIDE</span></div>
+          <div className="section-kicker" data-reveal><span>07 / OFF TRACK</span><span>THE HUMAN SIDE</span></div>
           <div className="beyond-layout"><h2 data-reveal>MORE THAN<br /><em>JUST CODE.</em></h2><div data-reveal><p>Visual storytelling, photography, creative experiments, and continuous learning influence how I see problems. Curiosity does not stop at the edge of a code editor.</p><div className="beyond-note"><span>ALWAYS EXPLORING</span><span>CREATIVITY × ENGINEERING</span></div></div></div>
           <div className="beyond-visual"><div className="visual-grid" /><span>IDEAS IN PROGRESS</span><strong>OBSERVE.<br />IMAGINE.<br />BUILD.</strong><span className="visual-index">SP / FIELD NOTES / 001</span></div>
         </section>
 
         <section id="contact" className="contact-section section-pad">
-          <div className="section-kicker"><span>07 / START A CONVERSATION</span><span>CONTACT / COLLABORATION</span></div>
+          <div className="section-kicker"><span>08 / START A CONVERSATION</span><span>CONTACT / COLLABORATION</span></div>
           <p className="eyebrow">HAVE A COMPLEX SYSTEM TO CONNECT?</p>
           <h2>LET&apos;S BUILD<br /><em>SOMETHING</em><br />MEANINGFUL.</h2>
           <div className="contact-bottom"><div><span className="eyebrow">EMAIL</span><a className="contact-email" data-cursor="EMAIL" href="mailto:saikiran_pamula@srivensolutions.com">saikiran_pamula@srivensolutions.com <ArrowUpRight size={17} /></a><button className="copy-button" onClick={copyEmail}>{copied ? <Check size={14} /> : <Copy size={14} />}{copied ? 'COPIED' : 'COPY EMAIL'}</button></div><div className="social-links"><a href="https://github.com/blackdranzer099" target="_blank" rel="noreferrer"><Code2 size={17} /> GITHUB <ArrowUpRight size={14} /></a><a href="mailto:saikiran_pamula@srivensolutions.com"><Mail size={17} /> EMAIL <ArrowUpRight size={14} /></a><span>INDIA / OPEN TO GOOD CONVERSATIONS</span></div></div>
