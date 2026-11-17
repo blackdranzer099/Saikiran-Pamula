@@ -8,7 +8,7 @@ import * as THREE from 'three'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Lenis from 'lenis'
-import { ArrowDown, ArrowUpRight, Github, Mail, Menu, X, Copy, Check } from 'lucide-react'
+import { ArrowDown, ArrowUpRight, Code2, Mail, Menu, X, Copy, Check } from 'lucide-react'
 
 const PORTRAIT_IMAGE = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sai_img-XBMaUZpNH5bzoOmjxZcLjP0eiAHqPT.png'
 const DEPTH_IMAGE = 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/wmremove-transformed-v2o7a16umCQXLlhPyv4B0xHoxGfW4m.jpeg'
@@ -297,7 +297,7 @@ export function PortfolioExperience() {
           <div className="section-kicker"><span>06 / START A CONVERSATION</span><span>CONTACT / COLLABORATION</span></div>
           <p className="eyebrow">HAVE A COMPLEX SYSTEM TO CONNECT?</p>
           <h2>LET&apos;S BUILD<br /><em>SOMETHING</em><br />MEANINGFUL.</h2>
-          <div className="contact-bottom"><div><span className="eyebrow">EMAIL</span><a className="contact-email" href="mailto:saikiran_pamula@srivensolutions.com">saikiran_pamula@srivensolutions.com <ArrowUpRight size={17} /></a><button className="copy-button" onClick={copyEmail}>{copied ? <Check size={14} /> : <Copy size={14} />}{copied ? 'COPIED' : 'COPY EMAIL'}</button></div><div className="social-links"><a href="https://github.com/blackdranzer099" target="_blank" rel="noreferrer"><Github size={17} /> GITHUB <ArrowUpRight size={14} /></a><a href="mailto:saikiran_pamula@srivensolutions.com"><Mail size={17} /> EMAIL <ArrowUpRight size={14} /></a><span>INDIA / OPEN TO GOOD CONVERSATIONS</span></div></div>
+          <div className="contact-bottom"><div><span className="eyebrow">EMAIL</span><a className="contact-email" href="mailto:saikiran_pamula@srivensolutions.com">saikiran_pamula@srivensolutions.com <ArrowUpRight size={17} /></a><button className="copy-button" onClick={copyEmail}>{copied ? <Check size={14} /> : <Copy size={14} />}{copied ? 'COPIED' : 'COPY EMAIL'}</button></div><div className="social-links"><a href="https://github.com/blackdranzer099" target="_blank" rel="noreferrer"><Code2 size={17} /> GITHUB <ArrowUpRight size={14} /></a><a href="mailto:saikiran_pamula@srivensolutions.com"><Mail size={17} /> EMAIL <ArrowUpRight size={14} /></a><span>INDIA / OPEN TO GOOD CONVERSATIONS</span></div></div>
         </section>
       </main>
       <footer className="site-footer"><a href="#top" className="footer-brand">SP<span>.</span></a><span>© {new Date().getFullYear()} SAI PAMULA</span><span>DATA / SYSTEMS / ENGINEERING</span><a href="#top">BACK TO TOP ↑</a></footer>
