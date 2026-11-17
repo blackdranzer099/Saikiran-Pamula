@@ -192,7 +192,7 @@ function EngineeringConsole() {
     <div className="console-top"><span><i/> ENGINEERING CONSOLE</span><span>SAFE / SIMULATED</span></div>
     <div className="console-tabs" role="tablist" aria-label="Console examples">{consoleCommands.map((item,index)=><button key={item.label} role="tab" aria-selected={active===index} className={active===index?'active':''} onClick={()=>setActive(index)}>{item.label}</button>)}</div>
     <div className="console-command"><span>guest@sp-lab:~$</span> {selected.command}</div>
-    <pre aria-live="polite">{selected.output.join('\\n')}</pre>
+    <pre aria-live="polite">{selected.output.join('\n')}</pre>
     <div className="console-foot"><span>● LOCAL EXAMPLE / NO LIVE SYSTEM CONNECTION</span><span>EXIT 0</span></div>
   </div>
 }
