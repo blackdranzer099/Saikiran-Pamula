@@ -337,12 +337,12 @@ input, textarea, [contenteditable="true"] { cursor: text !important; }
 .orbit-track-two span:nth-child(2) { top:auto; bottom:4%; left:calc(50% - 35px); right:auto; }
 @keyframes orbit-spin { to { transform:rotate(360deg); } }
 .project-card { position:relative; isolation:isolate; }
-.project-card::after { content:""; position:absolute; inset:-1px; z-index:-1; pointer-events:none; background:conic-gradient(from 0deg,transparent 0 68%,rgba(199,255,0,.95) 76%,rgba(199,255,0,.08) 82%,transparent 90%); opacity:0; transition:opacity .35s; animation:border-beam-spin 5s linear infinite; }
+.project-card::after { content:""; position:absolute; inset:0; z-index:5; padding:1px; pointer-events:none; background:conic-gradient(from 0deg,transparent 0 68%,rgba(199,255,0,.95) 76%,rgba(199,255,0,.08) 82%,transparent 90%); -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0); -webkit-mask-composite:xor; mask-composite:exclude; opacity:0; transition:opacity .35s; animation:border-beam-spin 5s linear infinite; }
 .project-card:hover::after { opacity:1; }
 @keyframes border-beam-spin { to { transform:rotate(360deg); } }
 .contact-section { position:relative; isolation:isolate; overflow:hidden; }
-.contact-section::after { content:""; position:absolute; inset:12px; z-index:-1; border:1px solid rgba(10,10,10,.22); pointer-events:none; }
-.contact-section::before { content:""; position:absolute; z-index:-1; top:0; left:-35%; width:28%; height:2px; background:linear-gradient(90deg,transparent,#10130e,transparent); animation:contact-beam 7s ease-in-out infinite; }
+.contact-section::after { content:""; position:absolute; inset:12px; z-index:0; border:1px solid rgba(10,10,10,.22); pointer-events:none; }
+.contact-section::before { content:""; position:absolute; z-index:0; top:0; left:-35%; width:28%; height:2px; background:linear-gradient(90deg,transparent,#10130e,transparent); animation:contact-beam 7s ease-in-out infinite; }
 @keyframes contact-beam { to { left:110%; } }
 .bento-section { background:#10130f; }
 .bento-heading { display:flex; align-items:flex-end; justify-content:space-between; gap:35px; margin:65px 0 42px; }
