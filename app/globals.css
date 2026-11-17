@@ -270,3 +270,21 @@ a:focus-visible,button:focus-visible { outline:2px solid var(--acid); outline-of
 html, body, body * { cursor: default !important; }
 a, button, [role="button"], [role="tab"], summary, label[for] { cursor: pointer !important; }
 input, textarea, [contenteditable="true"] { cursor: text !important; }
+
+
+/* Full-name hero lockup and complete, restrained wireframe globe */
+.hero-copy h1 { display:flex; flex-direction:column; align-items:flex-start; gap:0; font-size:clamp(3.6rem,10.6vw,11.5rem); line-height:.78; letter-spacing:-.085em; }
+.hero-copy h1 .hero-name-solid { color:var(--paper); white-space:nowrap; }
+.hero-copy h1 .hero-name-outline { color:transparent; -webkit-text-stroke:1px rgba(233,235,228,.58); white-space:nowrap; font-size:.88em; }
+.hero-portrait { width:min(60vw,860px); }
+.hero-depth { opacity:.82; }
+.hero-depth canvas { display:block; }
+@media(max-width:899px) {
+  .hero-copy h1 { font-size:clamp(3.8rem,13.5vw,8.5rem); }
+  .hero-portrait { width:86vw; }
+}
+@media(max-width:600px) {
+  .hero-copy h1 { font-size:clamp(3.15rem,14.8vw,5.8rem); }
+  .hero-copy h1 .hero-name-outline { -webkit-text-stroke-width:.8px; }
+  .hero-portrait { width:100vw; }
+}
