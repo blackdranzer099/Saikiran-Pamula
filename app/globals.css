@@ -199,3 +199,45 @@ button { color: inherit; font: inherit; }
   *,*::before,*::after { scroll-behavior:auto !important; animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
   .custom-cursor { display:none; }
 }
+
+
+/* Immersive chapter system — original Sai Pamula visual language */
+.hero-portrait { perspective: 1000px; }
+.hero-portrait > img { transform: translateZ(0); transition: filter .8s ease, transform 1.2s cubic-bezier(.2,.7,.2,1); }
+.hero-portrait:hover > img { filter: contrast(1.06) saturate(.92); transform: scale(1.018); }
+.hero-depth canvas { animation: hero-canvas-in 1.6s ease both; }
+@keyframes hero-canvas-in { from { opacity: 0; transform: scale(.88) rotate(-8deg); } to { opacity: 1; transform: scale(1) rotate(0); } }
+.track-world-section { overflow:hidden; background:#0d100c; }
+.track-world-heading { display:flex; align-items:flex-end; justify-content:space-between; gap:40px; padding:70px 0 55px; }
+.track-world-heading h2 { margin:0; font:900 clamp(4rem,11vw,11rem)/.76 var(--display); letter-spacing:-.1em; }
+.track-world-heading h2 em { color:var(--acid); font-style:normal; }
+.track-world-heading p { max-width:350px; margin:0 0 8px; color:var(--muted); font-size:15px; line-height:1.7; }
+.track-world-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.world-card { position:relative; display:flex; min-height:540px; flex-direction:column; justify-content:space-between; overflow:hidden; padding:clamp(22px,3vw,42px); isolation:isolate; }
+.world-card::before { position:absolute; z-index:-2; inset:0; content:""; transition:transform .9s cubic-bezier(.2,.7,.2,1); }
+.world-card:hover::before { transform:scale(1.045); }
+.world-card-engineering::before { background:radial-gradient(circle at 72% 45%,#34451d 0%,#182016 36%,#10140f 78%); }
+.world-card-creative::before { background:radial-gradient(circle at 70% 40%,#c8cec0 0%,#9da696 36%,#737d6c 100%); }
+.world-card-index,.world-card-link { position:relative; z-index:2; font:9px var(--mono); letter-spacing:.14em; }
+.world-card-engineering .world-card-index,.world-card-engineering .world-card-link { color:#c7ff00; }
+.world-card-creative { color:#10130e; }
+.world-card-creative .world-card-index,.world-card-creative .world-card-link { color:#3c4931; }
+.world-card strong { position:relative; z-index:2; font:900 clamp(3rem,7vw,7rem)/.78 var(--display); letter-spacing:-.095em; }
+.world-orbit { position:absolute; z-index:-1; width:min(34vw,420px); aspect-ratio:1; right:-5%; top:20%; border:1px solid rgba(199,255,0,.55); border-radius:50%; transform:rotate(-30deg) scaleY(.48); box-shadow:0 0 0 35px rgba(199,255,0,.035),0 0 0 70px rgba(199,255,0,.025); transition:transform 1.2s cubic-bezier(.2,.7,.2,1); }
+.world-card:hover .world-orbit { transform:rotate(25deg) scaleY(.55) scale(1.12); }
+.world-card-creative .world-orbit { border-color:rgba(16,19,14,.4); box-shadow:0 0 0 35px rgba(16,19,14,.035),0 0 0 70px rgba(16,19,14,.025); }
+.custom-cursor span { white-space:nowrap; font-size:7px; }
+a:focus-visible,button:focus-visible { outline:2px solid var(--acid); outline-offset:5px; }
+@media (max-width:899px) {
+  .track-world-heading { align-items:flex-start; flex-direction:column; padding:60px 0 35px; }
+  .track-world-grid { grid-template-columns:1fr; }
+  .world-card { min-height:430px; }
+  .world-orbit { width:55vw; }
+}
+@media (max-width:600px) {
+  .world-card { min-height:360px; }
+  .track-world-heading h2 { font-size:clamp(3.8rem,16vw,6.5rem); }
+}
+@media (prefers-reduced-motion:reduce) {
+  .hero-portrait > img,.world-card::before,.world-orbit { transition:none !important; }
+}
