@@ -193,7 +193,7 @@ function ProjectCard({ project, index }: { project: (typeof projects)[number]; i
         <h3>{project.title}</h3>
         <p>{project.description}</p>
         <div className="tag-list">{project.stack.map((tag) => <span key={tag}>{tag}</span>)}</div>
-        <button className="text-link" data-cursor="OPEN" onClick={() => setExpanded(!expanded)} aria-expanded={expanded}>{expanded ? 'CLOSE CASE STUDY' : 'EXPLORE CASE STUDY'} <ArrowUpRight size={15} /></button>
+        {index === 0 ? <a className="text-link" data-cursor="OPEN" href="/projects/snaplogic-architecture">EXPLORE ARCHITECTURE <ArrowUpRight size={15} /></a> : <button className="text-link" data-cursor="OPEN" onClick={() => setExpanded(!expanded)} aria-expanded={expanded}>{expanded ? 'CLOSE CASE STUDY' : 'EXPLORE CASE STUDY'} <ArrowUpRight size={15} /></button>}
         {expanded && <div className="project-detail"><span>ENGINEERING APPROACH</span><p>{project.detail}</p><small>Illustrative, anonymized project description. Specific client details and outcome metrics are intentionally omitted.</small></div>}
       </div>
     </article>
